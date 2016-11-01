@@ -8,19 +8,19 @@ The module returns an `EventEmitter` which emits `slack_event` events which cont
 
 ```javascript
 const slackEvents = require('slack-events-listener')({
-  port: process.env.PORT || 3000,
-  eventUrl: process.env.SLACK_EVENT_URL || '/slack_event',
-  verificationToken: process.env.SLACK_VERIFICATION_TOKEN || '<your application token>'
+  eventUrl: '/slack_event',                      // required
+  verificationToken: '<your application token>', // required
+  port: 1234                                     // optional, defaults to 3000
 });
 
 slackEvents.on('slack_event', console.log);
 ```
 
-This module requires three options to be set when loaded:
+## Options
 
-- `port` *Which port should the webserer bind to (defaults to 3000)*
-- `eventUrl` *The path that you should point the Slack Events API towards (defaults to /slack_event)*
-- `verificationToken` *Find this variable in your Slack application settings*
+- `eventUrl` *Required. The path that you should point the Slack Events API towards*
+- `verificationToken` *Required. Find this variable in your Slack application settings*
+- `port` *Optionanl, defaults to 3000. Which port should the webserer bind to*
 
 ## Payload format
 List of payloads is available at https://api.slack.com/events-api#event_types
